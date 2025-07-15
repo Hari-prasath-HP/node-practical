@@ -1,13 +1,16 @@
-const express = require("express")
-const app = express()
+const express = require("express");
+const app = express();
 
-app.get('/',(req,res)=>{
-    const {name,age} = req.query;
-    const {num1,num2} = req.query;
-    let sum = Number(num1)+Number(num2)
-    res.send(`Name: ${name}, Age: ${age} <br> sum of both number is : ${sum}`)
-})
+app.get('/:num2', (req, res) => {
+    const { name, age, num1 } = req.query; // from query string
+    const { num2 } = req.params; // from URL path
 
-app.listen(3000,()=>{
-    console.log(`server is running http://localhost:3000`)
-})
+    const sum = Number(num1) + Number(num2);
+
+    res.send(`Name: ${name}, Age: ${age} <br> Sum of numbers: ${sum}`);
+    console.log(`num2 from params: ${num2}`);
+});
+
+app.listen(3000, () => {
+    console.log(`🚀 Server running at http://localhost:3000`);
+});
